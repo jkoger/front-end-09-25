@@ -15,7 +15,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.rb-mortgage-calc { background: #fff; }
+.rb-mortgage-calc {
+  background: #fff;
+}
 
 .rb-divider {
   width: 1px;
@@ -39,7 +41,6 @@
   font-size: 32px;
   transform: translateY(-4px);
 }
-
 
 a {
   font-weight: 500;
@@ -84,7 +85,7 @@ button:focus-visible {
 
 button:disabled {
   border: none;
-  cursor: default
+  cursor: default;
 }
 
 @media (prefers-color-scheme: light) {

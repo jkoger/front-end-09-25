@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 
 function RegularCalculator() {
   const [number1, setNumber1] = useState("");
@@ -18,17 +18,26 @@ function RegularCalculator() {
     setNumber1("");
     setOperator("");
     setNumber2("");
-    setResult(false)
+    setResult(false);
   }
-
 
   return (
     <div>
-      <span>{number1} {operator} {number2}</span>
-      {operator === "x" && number2 && result && <span> = {Number(number1) * Number(number2)}</span>}
-      {operator === "-" && number2 && result &&<span>  = {Number(number1) - Number(number2)}</span>}
-      {operator === "+" && number2 && result && <span> = {Number(number1) + Number(number2)}</span>}
-      {operator === "/" && number2 && result &&<span> = {Number(number1) / Number(number2)}</span>}
+      <span>
+        {number1} {operator} {number2}
+      </span>
+      {operator === "x" && number2 && result && (
+        <span> = {Number(number1) * Number(number2)}</span>
+      )}
+      {operator === "-" && number2 && result && (
+        <span> = {Number(number1) - Number(number2)}</span>
+      )}
+      {operator === "+" && number2 && result && (
+        <span> = {Number(number1) + Number(number2)}</span>
+      )}
+      {operator === "/" && number2 && result && (
+        <span> = {Number(number1) / Number(number2)}</span>
+      )}
       <br />
 
       <button onClick={() => setNumber(7)}>7</button>
@@ -49,12 +58,15 @@ function RegularCalculator() {
       <button onClick={() => setOperator("/")}>/</button>
       <button onClick={() => setNumber(0)}>0</button>
       <button onClick={() => reset()}>C</button>
-      <button disabled ={ operator ==="" || number2 ===""} onClick={() => setResult(true)} >=</button>
+      <button
+        disabled={operator === "" || number2 === ""}
+        onClick={() => setResult(true)}
+      >
+        =
+      </button>
       <br />
-
-
     </div>
-  )
+  );
 }
 
-export default RegularCalculator
+export default RegularCalculator;

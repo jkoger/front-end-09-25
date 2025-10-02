@@ -1,5 +1,4 @@
 #root {
-
   margin: 0 auto;
   text-align: center;
 }
@@ -14,9 +13,9 @@
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 
-.amount-active{
-color : rgb(227 6 140);
-border: 1px solid rgb(227 6 140) !important;
+.amount-active {
+  color: rgb(227 6 140);
+  border: 1px solid rgb(227 6 140) !important;
 }
 
 .dropdown-option {
@@ -25,5 +24,5 @@ border: 1px solid rgb(227 6 140) !important;
 }
 
 .dropdown-option:hower {
-cursor:pointer;
+  cursor: pointer;
 }

@@ -1,34 +1,34 @@
+import { forwardRef, useImperativeHandle, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-import { forwardRef, useImperativeHandle, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
- export interface ConfirmationModalInterface {
-  deleteItem : () => void, 
-  subject: string
+export interface ConfirmationModalInterface {
+  deleteItem: () => void;
+  subject: string;
 }
 
 export interface ConfirmationModalType {
-  handleShow: ()=> void, 
-  handleClose: ()=> void
+  handleShow: () => void;
+  handleClose: () => void;
 }
 
-const  ConfirmationModal = forwardRef (({deleteItem, subject} : ConfirmationModalInterface, ref) => {
- const [show, setShow] = useState(false);
+const ConfirmationModal = forwardRef(
+  ({ deleteItem, subject }: ConfirmationModalInterface, ref) => {
+    const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+    const handleClose = () => setShow(false);
 
-  useImperativeHandle (ref, () => ({
-    handleShow(){
-      setShow(true);
-    },
+    useImperativeHandle(ref, () => ({
+      handleShow() {
+        setShow(true);
+      },
 
-    handleClose (){
-      setShow(false);
-    }
-  }));
-  
-  /*
+      handleClose() {
+        setShow(false);
+      },
+    }));
+
+    /*
   const handleShow = (index) =>{
     setShow(true);
     indexRef.current = index;
@@ -36,13 +36,14 @@ const  ConfirmationModal = forwardRef (({deleteItem, subject} : ConfirmationModa
 };
 */
 
-
-  return (
-    <Modal show={show} onHide={handleClose}>
+    return (
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Deleting {subject} </Modal.Title>
         </Modal.Header>
-        <Modal.Body>You are about to delete a {subject}, this is irreversible!</Modal.Body>
+        <Modal.Body>
+          You are about to delete a {subject}, this is irreversible!
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -52,7 +53,8 @@ const  ConfirmationModal = forwardRef (({deleteItem, subject} : ConfirmationModa
           </Button>
         </Modal.Footer>
       </Modal>
-  )
-});
+    );
+  },
+);
 
-export default ConfirmationModal
+export default ConfirmationModal;
