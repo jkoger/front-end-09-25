@@ -17,6 +17,8 @@ import ManageProducts from "./pages/admin/ManageProducts";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
 import Profile from "./pages/auth/Profile";
+import Map from "./pages/Map";
+import { ContactUs } from "./pages/ContactUs";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -43,6 +45,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/map" element={<Map />} />
+        <Route path="/contact" element={<ContactUs />} />
 
         <Route path="/*" element={<NotFound />} />
       </Routes>

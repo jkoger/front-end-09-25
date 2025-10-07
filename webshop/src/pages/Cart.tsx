@@ -12,6 +12,7 @@ import {
 } from "../store/counterSlice";
 import type { CartProduct } from "../models/CartProduct";
 import { useAppDispatch } from "../store/store";
+import { useTranslation } from "react-i18next";
 
 function Cart() {
   const [products, setProducts] = useState<CartProduct[]>(
@@ -21,6 +22,8 @@ function Cart() {
   const { empty, decreaseCartSum, increaseCartSum } =
     useContext(CartSumContext);
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   function emptyCart() {
     empty();
@@ -75,11 +78,12 @@ function Cart() {
   return (
     <div>
       {products.length === 0 ? (
-        <div>Ostukorv on tühi</div>
+        <div>{t("cart.empty-text")}</div>
       ) : (
         <>
-          <div>Ostukorvis on {products.length} erinevat toodet</div>
-          <button onClick={() => emptyCart()}>Tühjenda</button>
+          {/* <div>{t("cart.in-cart")} {products.length} {t("cart.different-products")}</div> */}
+          <div> {t("cart.products-length", { length: products.length })} </div>
+          <button onClick={() => emptyCart()}>{t("cart.empty-button")}</button>
         </>
       )}
 

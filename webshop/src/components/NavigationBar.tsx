@@ -8,11 +8,21 @@ import { CartSumContext } from "../context/CartSumContext";
 import { AuthContext } from "../context/AuthContext";
 // import { useSelector } from 'react-redux';
 import { useAppSelector } from "../store/store";
+import { useTranslation } from "react-i18next";
+
+import english from "../assets/english.png";
+import estonian from "../assets/estonian.png";
 
 function NavigationBar() {
   const { cartSum } = useContext(CartSumContext);
   const { loggedIn, logout } = useContext(AuthContext);
   const count = useAppSelector((state) => state.counter.value);
+  const { t, i18n } = useTranslation();
+
+  function updateLanguage(newLanguage: string) {
+    i18n.changeLanguage(newLanguage);
+    localStorage.setItem("language", newLanguage);
+  }
 
   return (
     <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
@@ -24,13 +34,16 @@ function NavigationBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/ostukorv">
-              Cart
+              {t("nav.cart")}
             </Nav.Link>
             <Nav.Link as={Link} to="/kalkulaator">
-              Calculator
+              {t("nav.calculator")}
             </Nav.Link>
             <Nav.Link as={Link} to="/seaded">
-              Settings
+              {t("nav.settings")}
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contact">
+              {t("nav.contact")}
             </Nav.Link>
           </Nav>
           <Nav>
@@ -42,6 +55,9 @@ function NavigationBar() {
             </Nav.Link>
             <Nav.Link as={Link} to="/poed">
               Shops
+            </Nav.Link>
+            <Nav.Link as={Link} to="/map">
+              Map
             </Nav.Link>
             <span>
               {" "}
@@ -66,6 +82,18 @@ function NavigationBar() {
                 </Nav.Link>
               </>
             )}
+            <img
+              className="lang"
+              src={english}
+              onClick={() => updateLanguage("en")}
+              alt=""
+            />
+            <img
+              className="lang"
+              src={estonian}
+              onClick={() => updateLanguage("et")}
+              alt=""
+            />
           </Nav>
         </Navbar.Collapse>
       </Container>
