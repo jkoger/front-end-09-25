@@ -67,11 +67,16 @@ function AddProduct() {
         type="text"
       />
       <br />
-      <Checkbox handleChecked={updateField} label="Active" />
+      <Checkbox
+        handleChecked={updateField}
+        defaultChecked={product.active}
+        label="Active"
+      />
       <Dropdown
         handleSelect={updateField}
         options={categories}
         header="category"
+        defaultValue={product.category}
       >
         {/* <input onChange={(e) => setProduct({...product, category: e.target.value})} type="text"/> <br />*/}
       </Dropdown>

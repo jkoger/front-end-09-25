@@ -9,6 +9,7 @@ import ConfirmationModal2, {
   type ConfirmationModal2Type,
 } from "../../components/ui/ConfirmationModal2";
 import type { Product } from "../../models/Product";
+import { Link } from "react-router-dom";
 
 // let indexToBeDeleted;
 
@@ -48,6 +49,7 @@ function ManageProducts() {
             <th>Category</th>
             <th>Image</th>
             <th>Delete</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -63,6 +65,11 @@ function ManageProducts() {
               </td>
               <td>
                 <button onClick={() => openModal(index)}> x </button>
+              </td>
+              <td>
+                <Link to={"/admin/muuda-toode/" + product.id}>
+                  <button>Muuda</button>
+                </Link>
               </td>
             </tr>
           ))}

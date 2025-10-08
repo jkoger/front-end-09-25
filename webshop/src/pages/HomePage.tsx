@@ -10,6 +10,7 @@ import { increment } from "../store/counterSlice";
 import type { Product } from "../models/Product";
 import type { CartProduct } from "../models/CartProduct";
 import { useAppDispatch } from "../store/store";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   const { increaseCartSum } = useContext(CartSumContext);
@@ -85,6 +86,9 @@ function HomePage() {
           <div>{product.name}</div>
           <div>{product.price} eur</div>
           <BButton onClick={() => addToCart(product)}>Lisa ostukorvi</BButton>
+          <Link to={"/toode/" + product.name}>
+            <button>Vt lahemalt</button>
+          </Link>
         </div>
       ))}
 

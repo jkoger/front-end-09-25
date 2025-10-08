@@ -19,6 +19,8 @@ import Signup from "./pages/auth/Signup";
 import Profile from "./pages/auth/Profile";
 import Map from "./pages/Map";
 import { ContactUs } from "./pages/ContactUs";
+import EditProduct from "./pages/EditProduct";
+import SingleProduct from "./pages/SingleProduct";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -41,7 +43,9 @@ function App() {
         <Route path="/admin/supplier2" element={<Supplier2 />} />
         <Route path="/admin/supplier3" element={<Supplier3 />} />
         <Route path="/admin/halda-tooteid" element={<ManageProducts />} />
+        <Route path="/admin/muuda-toode/:productId" element={<EditProduct />} />
 
+        <Route path="/toode/:productName" element={<SingleProduct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />

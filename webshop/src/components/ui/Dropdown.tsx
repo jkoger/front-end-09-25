@@ -6,14 +6,16 @@ interface DropDownInterface {
   handleSelect: (value: string, key: string) => void;
   options: string[];
   header: string;
+  defaultValue: string;
 }
 
 export default function Dropdown({
   handleSelect,
   options,
   header,
+  defaultValue,
 }: DropDownInterface) {
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(defaultValue);
 
   function setSelectedHandler(value: string) {
     setSelected(value);

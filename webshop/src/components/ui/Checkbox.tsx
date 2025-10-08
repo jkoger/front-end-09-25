@@ -1,12 +1,14 @@
 interface CheckBoxInterface {
   handleChecked: (_isChecked: boolean, key: string) => void;
   label: string;
+  defaultChecked: boolean;
 }
 
-function Checkbox({ handleChecked, label }: CheckBoxInterface) {
+function Checkbox({ handleChecked, label, defaultChecked }: CheckBoxInterface) {
   return (
     <div className="items-center mb-4">
       <input
+        defaultChecked={defaultChecked}
         onChange={(e) => handleChecked(e.target.checked, "active")}
         id="active-checkbox"
         type="checkbox"
