@@ -1,5 +1,6 @@
 interface PaymentInterface {
   isDisabled: boolean;
+  sum: number;
 }
 
 function Payment(props: PaymentInterface) {
@@ -9,7 +10,7 @@ function Payment(props: PaymentInterface) {
       account_name: "EUR3D1",
       nonce: "165784ab" + Math.random() * 999999,
       timestamp: new Date(),
-      amount: 120.56,
+      amount: props.sum,
       order_reference: "840" + Math.random() * 999999,
       customer_url: "https://err.ee",
       api_username: "e36eb40f5ec87fa2",

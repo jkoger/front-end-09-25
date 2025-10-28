@@ -1,24 +1,39 @@
 import { useState } from "react";
-import productsJSON from "../../data/products.json";
+//import productsJSON from "../../data/products.json";
 
 import toast, { Toaster } from "react-hot-toast";
 import { TextField } from "@mui/material";
 import Dropdown from "../../components/ui/Dropdown";
 import Checkbox from "../../components/ui/Checkbox";
 import type { Product } from "../../models/Product";
+import type { Category } from "../../models/Category";
+import useFetch from "../../hooks/useFetch";
 
 function AddProduct() {
   const [product, setProduct] = useState<Product>({
-    id: 0,
     name: "",
     price: 0,
     image: "",
     active: false,
-    category: "",
+    category: { name: "" },
   });
-  const categories = ["drink", "snack", "fruit", "dairy", "bakery"];
+
+  const {
+    items: categories,
+    loading,
+  }: { items: Category[]; loading: boolean } = useFetch("categories");
+
+  /*const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    fetch(import.meta.env.VITE_BASE_URL + "/categories")
+      .then((res) => res.json())
+      .then((json) => setCategories(json));
+  }, []);
+  */
 
   function add() {
+    /*
     if (!product.name) {
       toast.error("Cannot add without name");
       return;
@@ -28,24 +43,37 @@ function AddProduct() {
       toast.error("Price incorrect");
       return;
     }
+      */
 
-    productsJSON.push(product);
-    toast.success("Product succesfully added");
+    //productsJSON.push(product);
+    fetch(import.meta.env.VITE_BASE_URL + "/products", {
+      method: "POST",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.message && json.timestamp && json.code) {
+          toast.error(json.message);
+        } else {
+          toast.success("Product succesfully added");
+        }
+      });
   }
 
   function updateField(value: any, key: string) {
-    setProduct({ ...product, [key]: value });
+    if (key === "category") {
+      setProduct({ ...product, category: { name: value } });
+    } else {
+      setProduct({ ...product, [key]: value });
+    }
   }
 
   return (
     <div>
       <div>Ajutine väljakuvamine : {JSON.stringify(product)} </div>
-      <label>ID</label> <br />
-      <TextField
-        label="ID"
-        onChange={(e) => setProduct({ ...product, id: Number(e.target.value) })}
-        type="number"
-      />
       <br />
       <TextField
         label="Name"
@@ -69,17 +97,21 @@ function AddProduct() {
       <br />
       <Checkbox
         handleChecked={updateField}
-        defaultChecked={product.active}
+        defaultChecked={false}
         label="Active"
       />
-      <Dropdown
-        handleSelect={updateField}
-        options={categories}
-        header="category"
-        defaultValue={product.category}
-      >
-        {/* <input onChange={(e) => setProduct({...product, category: e.target.value})} type="text"/> <br />*/}
-      </Dropdown>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <Dropdown
+          handleSelect={updateField}
+          options={categories.map((category) => category.name)}
+          header="category"
+          defaultValue=""
+        >
+          {/* <input onChange={(e) => setProduct({...product, category: e.target.value})} type="text"/> <br />*/}
+        </Dropdown>
+      )}
       <button onClick={add}> Sisesta</button>
       <Toaster />
     </div>

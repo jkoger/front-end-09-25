@@ -1,24 +1,55 @@
 import { useNavigate, useParams } from "react-router-dom";
-import productJSON from "../data/products.json";
+// import productJSON from "../data/products.json";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Checkbox from "../components/ui/Checkbox";
 import Dropdown from "../components/ui/Dropdown";
+import type { Product } from "../models/Product";
+import type { Category } from "../models/Category";
+import useFetch from "../hooks/useFetch";
 
 function EditProduct() {
   const { productId } = useParams();
-  const [product, setProduct] = useState(
-    productJSON.find((product) => product.id === Number(productId)),
-  );
+  const [product, setProduct] = useState<Product>({
+    id: 0,
+    name: "",
+    price: 0,
+    image: "",
+    active: false,
+    category: { name: "" },
+  });
 
-  const categories = ["drink", "snack", "fruit", "dairy", "bakery"];
+  /*
+
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    fetch(import.meta.env.VITE_BASE_URL + "/categories")
+      .then((res) => res.json())
+      .then((json) => setCategories(json));
+  }, []);
+  */
+  const {
+    items: categories,
+    loading,
+  }: { items: Category[]; loading: boolean } = useFetch("categories");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch(import.meta.env.VITE_BASE_URL + "/products/" + productId)
+      .then((res) => res.json())
+      .then((json) => setProduct(json));
+  }, []);
 
   function updateField(value: any, key: string) {
     if (!product) {
       return;
     }
-    setProduct({ ...product, [key]: value });
+    if (key === "category") {
+      setProduct({ ...product, category: { name: value } });
+    } else {
+      setProduct({ ...product, [key]: value });
+    }
   }
 
   function editProduct() {
@@ -29,9 +60,20 @@ function EditProduct() {
       alert("Tuhja nimega ei saa lisada");
       return;
     }
-    const index = productJSON.findIndex((p) => p.id === product.id);
-    productJSON[index] = product;
-    navigate("/admin/halda-tooteid");
+
+    fetch(import.meta.env.VITE_BASE_URL + "/products", {
+      method: "PUT",
+      body: JSON.stringify(product),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then(() => navigate("/admin/halda-tooteid"));
+  }
+
+  if (product.id === 0) {
+    return <div>Loading...</div>;
   }
 
   if (!product) {
@@ -72,12 +114,16 @@ function EditProduct() {
         label="Active"
         defaultChecked={product.active}
       />
-      <Dropdown
-        handleSelect={updateField}
-        options={categories}
-        defaultValue={product.category}
-        header="category"
-      ></Dropdown>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <Dropdown
+          handleSelect={updateField}
+          options={categories.map((category) => category.name)}
+          defaultValue={product.category?.name}
+          header="category"
+        ></Dropdown>
+      )}
       <br />
       <br />
 

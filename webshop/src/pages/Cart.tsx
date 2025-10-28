@@ -13,6 +13,7 @@ import {
 import type { CartProduct } from "../models/CartProduct";
 import { useAppDispatch } from "../store/store";
 import { useTranslation } from "react-i18next";
+import { calculateCartSum } from "../util/Calculations";
 
 function Cart() {
   const [products, setProducts] = useState<CartProduct[]>(
@@ -68,12 +69,14 @@ function Cart() {
     setProducts(products.slice());
     localStorage.setItem("cart", JSON.stringify(products));
   }
+  /*
 
   function calculateCartSum() {
     let sum = 0;
     products.forEach((cp) => (sum += cp.product.price * cp.quantity));
     return sum;
   }
+    */
 
   return (
     <div>
@@ -102,15 +105,24 @@ function Cart() {
       {products.length > 0 && (
         <Fragment>
           <br />
-          <div>Ostukorvi kogusumma on {calculateCartSum().toFixed(2)} €</div>
+          <div>
+            Ostukorvi kogusumma on {calculateCartSum(products).toFixed(2)} €
+          </div>
 
           <br />
           <br />
           <ParcelMachines />
           <br />
           <br />
-          <Checkbox handleChecked={setAgreedToTerms} label="Agreed to terms" />
-          <Payment isDisabled={!agreedToTerms} />
+          <Checkbox
+            defaultChecked={false}
+            handleChecked={setAgreedToTerms}
+            label="Agreed to terms"
+          />
+          <Payment
+            sum={calculateCartSum(products)}
+            isDisabled={!agreedToTerms}
+          />
         </Fragment>
       )}
     </div>

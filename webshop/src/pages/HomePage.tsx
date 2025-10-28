@@ -1,52 +1,62 @@
-import { useContext, useState } from "react";
-import productsJSON from "../data/products.json";
+import { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { Button as BButton } from "react-bootstrap";
 
-import toast, { Toaster } from "react-hot-toast";
-import { CartSumContext } from "../context/CartSumContext";
-import { increment } from "../store/counterSlice";
-//import { useDispatch } from "react-redux";
+import { Toaster } from "react-hot-toast";
 import type { Product } from "../models/Product";
-import type { CartProduct } from "../models/CartProduct";
-import { useAppDispatch } from "../store/store";
+
 import { Link } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+
+import useAddToCart from "../hooks/useAddToCart";
 
 function HomePage() {
-  const { increaseCartSum } = useContext(CartSumContext);
-  const dispatch = useAppDispatch();
+  const [products, setProducts] = useState<Product[]>([]);
+  // const { increaseCartSum } = useContext(CartSumContext);
+  // const dispatch = useAppDispatch();
+  const addToCart = useAddToCart();
 
-  const [products, setProducts] = useState(productsJSON);
+  /*
+  useEffect(() => {
+    fetch(import.meta.env.VITE_BASE_URL + "/products")
+      .then((res) => res.json())
+      .then((json) => setProducts(json));
+  }, []);
+  */
+  const { items, loading } = useFetch("/products");
+  useEffect(() => {
+    setProducts(items);
+  }, [items]);
 
   function sortAZ() {
-    productsJSON.sort((a, b) => a.name.localeCompare(b.name));
-    setProducts(productsJSON.slice());
+    products.sort((a, b) => a.name.localeCompare(b.name));
+    setProducts(products.slice());
   }
 
   function sortZA() {
-    productsJSON.sort((a, b) => b.name.localeCompare(a.name));
-    setProducts(productsJSON.slice());
+    products.sort((a, b) => b.name.localeCompare(a.name));
+    setProducts(products.slice());
   }
 
   function sortPriceAsc() {
-    productsJSON.sort((a, b) => a.price - b.price);
-    setProducts(productsJSON.slice());
+    products.sort((a, b) => a.price - b.price);
+    setProducts(products.slice());
   }
   function sortPriceDesc() {
-    productsJSON.sort((a, b) => b.price - a.price);
-    setProducts(productsJSON.slice());
+    products.sort((a, b) => b.price - a.price);
+    setProducts(products.slice());
   }
 
   function filterUnder5() {
-    const result = productsJSON.filter((product) => product.price < 3);
+    const result = products.filter((product) => product.price < 3);
     setProducts(result);
   }
 
   function filterActive() {
-    const result = productsJSON.filter((product) => product.active);
+    const result = products.filter((product) => product.active);
     setProducts(result);
   }
-
+  /*
   function addToCart(clickedProduct: Product) {
     const cartLS: CartProduct[] = JSON.parse(
       localStorage.getItem("cart") || "[]",
@@ -66,6 +76,11 @@ function HomePage() {
     increaseCartSum(clickedProduct.price);
     dispatch(increment());
   }
+    */
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -83,10 +98,11 @@ function HomePage() {
 
       {products.map((product) => (
         <div key={product.id}>
+          {product.image && <img className="logo" src={product.image} alt="" />}
           <div>{product.name}</div>
           <div>{product.price} eur</div>
           <BButton onClick={() => addToCart(product)}>Lisa ostukorvi</BButton>
-          <Link to={"/toode/" + product.name}>
+          <Link to={"/toode/" + product.id}>
             <button>Vt lahemalt</button>
           </Link>
         </div>

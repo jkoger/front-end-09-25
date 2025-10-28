@@ -15,7 +15,7 @@ import estonian from "../assets/estonian.png";
 
 function NavigationBar() {
   const { cartSum } = useContext(CartSumContext);
-  const { loggedIn, logout } = useContext(AuthContext);
+  const { loggedIn, person, logout } = useContext(AuthContext);
   const count = useAppSelector((state) => state.counter.value);
   const { t, i18n } = useTranslation();
 
@@ -47,9 +47,11 @@ function NavigationBar() {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/admin">
-              Admin
-            </Nav.Link>
+            {(person.role === "ADMIN" || person.role === "MANAGER") && (
+              <Nav.Link as={Link} to="/admin">
+                Admin
+              </Nav.Link>
+            )}
             <Nav.Link as={Link} to="/kinkekaart">
               Giftcards
             </Nav.Link>

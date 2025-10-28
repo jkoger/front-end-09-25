@@ -21,6 +21,8 @@ import Map from "./pages/Map";
 import { ContactUs } from "./pages/ContactUs";
 import EditProduct from "./pages/EditProduct";
 import SingleProduct from "./pages/SingleProduct";
+import ManageCategories from "./pages/admin/ManageCategories";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -43,9 +45,13 @@ function App() {
         <Route path="/admin/supplier2" element={<Supplier2 />} />
         <Route path="/admin/supplier3" element={<Supplier3 />} />
         <Route path="/admin/halda-tooteid" element={<ManageProducts />} />
+        <Route
+          path="/admin/halda-kategooriaid"
+          element={<ManageCategories />}
+        />
         <Route path="/admin/muuda-toode/:productId" element={<EditProduct />} />
 
-        <Route path="/toode/:productName" element={<SingleProduct />} />
+        <Route path="/toode/:productId" element={<SingleProduct />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
@@ -54,6 +60,8 @@ function App() {
 
         <Route path="/*" element={<NotFound />} />
       </Routes>
+
+      <Toaster />
     </>
   );
 }
