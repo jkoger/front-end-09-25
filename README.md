@@ -3,8 +3,6 @@
 A responsive **React + TypeScript** webstore app built during a React course.  
 Single-page application built with **Vite**, featuring customer and admin flows, localization, and integrations such as **EveryPay**, **EmailJS**, **Omniva**, and **React-Leaflet**.
 
----
-
 ##  Key Features
 
 ###  Customer
@@ -19,8 +17,6 @@ Single-page application built with **Vite**, featuring customer and admin flows,
 - Add / edit / delete products and categories  
 - Supplier dashboards pulling data from Fakestore, EscuelaJS & ITBook APIs  
 - Custom confirmation modals for destructive actions  
-
----
 
 ##  Tech Stack
 
