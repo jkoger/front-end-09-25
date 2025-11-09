@@ -47,10 +47,10 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       .then((json) => {
         if (json) {
           setPerson(json);
+          console.log(person);
           setLoggedIn(true);
         }
         setLoading(false);
-        console.log(person);
       });
   }
 

@@ -19,7 +19,7 @@ import Signup from "./pages/auth/Signup";
 import Profile from "./pages/auth/Profile";
 import Map from "./pages/Map";
 import { ContactUs } from "./pages/ContactUs";
-import EditProduct from "./pages/EditProduct";
+import EditProduct from "./pages/admin/EditProduct";
 import SingleProduct from "./pages/SingleProduct";
 import ManageCategories from "./pages/admin/ManageCategories";
 import { Toaster } from "react-hot-toast";

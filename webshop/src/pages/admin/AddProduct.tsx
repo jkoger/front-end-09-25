@@ -51,6 +51,7 @@ function AddProduct() {
       body: JSON.stringify(product),
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
       },
     })
       .then((res) => res.json())

@@ -46,6 +46,7 @@ function ManageCategories() {
       body: JSON.stringify(category),
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
       },
     })
       .then((res) => res.json())

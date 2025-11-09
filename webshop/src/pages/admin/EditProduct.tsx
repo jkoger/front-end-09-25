@@ -2,11 +2,11 @@ import { useNavigate, useParams } from "react-router-dom";
 // import productJSON from "../data/products.json";
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import Checkbox from "../components/ui/Checkbox";
-import Dropdown from "../components/ui/Dropdown";
-import type { Product } from "../models/Product";
-import type { Category } from "../models/Category";
-import useFetch from "../hooks/useFetch";
+import Checkbox from "../../components/ui/Checkbox";
+import Dropdown from "../../components/ui/Dropdown";
+import type { Product } from "../../models/Product";
+import type { Category } from "../../models/Category";
+import useFetch from "../../hooks/useFetch";
 
 function EditProduct() {
   const { productId } = useParams();
@@ -32,7 +32,7 @@ function EditProduct() {
   const {
     items: categories,
     loading,
-  }: { items: Category[]; loading: boolean } = useFetch("categories");
+  }: { items: Category[]; loading: boolean } = useFetch("/categories");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,6 +66,7 @@ function EditProduct() {
       body: JSON.stringify(product),
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + sessionStorage.getItem("token"),
       },
     })
       .then((res) => res.json())

@@ -41,6 +41,10 @@ function ManageProducts() {
       import.meta.env.VITE_BASE_URL + "/products/" + idToBeDeleted.current,
       {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + sessionStorage.getItem("token"),
+        },
       },
     )
       .then((res) => res.json())
