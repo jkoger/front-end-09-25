@@ -1,0 +1,246 @@
+[
+  {
+    "id": 1,
+    "name": "Coca-Cola",
+    "price": 1.2,
+    "image": "example.com/coke.jpg",
+    "active": true,
+    "category": "drink"
+  },
+  {
+    "id": 2,
+    "name": "Pepsi",
+    "price": 1.1,
+    "image": "example.com/pepsi.jpg",
+    "active": true,
+    "category": "drink"
+  },
+  {
+    "id": 3,
+    "name": "Fanta",
+    "price": 1.3,
+    "image": "example.com/fanta.jpg",
+    "active": true,
+    "category": "drink"
+  },
+  {
+    "id": 4,
+    "name": "Sprite",
+    "price": 1.25,
+    "image": "example.com/sprite.jpg",
+    "active": true,
+    "category": "drink"
+  },
+  {
+    "id": 5,
+    "name": "Red Bull",
+    "price": 2.5,
+    "image": "example.com/redbull.jpg",
+    "active": true,
+    "category": "drink"
+  },
+  {
+    "id": 6,
+    "name": "Lipton Ice Tea",
+    "price": 1.7,
+    "image": "example.com/lipton.jpg",
+    "active": true,
+    "category": "drink"
+  },
+
+  {
+    "id": 7,
+    "name": "Lays Classic",
+    "price": 2.2,
+    "image": "example.com/lays.jpg",
+    "active": true,
+    "category": "snack"
+  },
+  {
+    "id": 8,
+    "name": "Doritos Nacho",
+    "price": 2.5,
+    "image": "example.com/doritos.jpg",
+    "active": true,
+    "category": "snack"
+  },
+  {
+    "id": 9,
+    "name": "Pringles Original",
+    "price": 3.0,
+    "image": "example.com/pringles.jpg",
+    "active": true,
+    "category": "snack"
+  },
+  {
+    "id": 10,
+    "name": "KitKat",
+    "price": 1.4,
+    "image": "example.com/kitkat.jpg",
+    "active": true,
+    "category": "snack"
+  },
+  {
+    "id": 11,
+    "name": "Snickers",
+    "price": 1.5,
+    "image": "example.com/snickers.jpg",
+    "active": true,
+    "category": "snack"
+  },
+  {
+    "id": 12,
+    "name": "M&M's",
+    "price": 1.8,
+    "image": "example.com/mms.jpg",
+    "active": true,
+    "category": "snack"
+  },
+
+  {
+    "id": 13,
+    "name": "Apple",
+    "price": 0.9,
+    "image": "example.com/apple.jpg",
+    "active": true,
+    "category": "fruit"
+  },
+  {
+    "id": 14,
+    "name": "Banana",
+    "price": 1.1,
+    "image": "example.com/banana.jpg",
+    "active": true,
+    "category": "fruit"
+  },
+  {
+    "id": 15,
+    "name": "Orange",
+    "price": 1.2,
+    "image": "example.com/orange.jpg",
+    "active": false,
+    "category": "fruit"
+  },
+  {
+    "id": 16,
+    "name": "Grapes",
+    "price": 2.8,
+    "image": "example.com/grapes.jpg",
+    "active": true,
+    "category": "fruit"
+  },
+  {
+    "id": 17,
+    "name": "Pineapple",
+    "price": 3.5,
+    "image": "example.com/pineapple.jpg",
+    "active": true,
+    "category": "fruit"
+  },
+  {
+    "id": 18,
+    "name": "Mango",
+    "price": 2.2,
+    "image": "example.com/mango.jpg",
+    "active": true,
+    "category": "fruit"
+  },
+
+  {
+    "id": 19,
+    "name": "Milk 1L",
+    "price": 1.3,
+    "image": "example.com/milk.jpg",
+    "active": true,
+    "category": "dairy"
+  },
+  {
+    "id": 20,
+    "name": "Cheddar Cheese",
+    "price": 3.0,
+    "image": "example.com/cheddar.jpg",
+    "active": true,
+    "category": "dairy"
+  },
+  {
+    "id": 21,
+    "name": "Yogurt",
+    "price": 1.1,
+    "image": "example.com/yogurt.jpg",
+    "active": false,
+    "category": "dairy"
+  },
+  {
+    "id": 22,
+    "name": "Butter",
+    "price": 2.4,
+    "image": "example.com/butter.jpg",
+    "active": true,
+    "category": "dairy"
+  },
+  {
+    "id": 23,
+    "name": "Cream Cheese",
+    "price": 2.7,
+    "image": "example.com/creamcheese.jpg",
+    "active": true,
+    "category": "dairy"
+  },
+  {
+    "id": 24,
+    "name": "Parmesan",
+    "price": 4.5,
+    "image": "example.com/parmesan.jpg",
+    "active": true,
+    "category": "dairy"
+  },
+
+  {
+    "id": 25,
+    "name": "Baguette",
+    "price": 1.6,
+    "image": "example.com/baguette.jpg",
+    "active": true,
+    "category": "bakery"
+  },
+  {
+    "id": 26,
+    "name": "Croissant",
+    "price": 2.0,
+    "image": "example.com/croissant.jpg",
+    "active": false,
+    "category": "bakery"
+  },
+  {
+    "id": 27,
+    "name": "Muffin",
+    "price": 2.2,
+    "image": "example.com/muffin.jpg",
+    "active": true,
+    "category": "bakery"
+  },
+  {
+    "id": 28,
+    "name": "Brownie",
+    "price": 2.8,
+    "image": "example.com/brownie.jpg",
+    "active": true,
+    "category": "bakery"
+  },
+  {
+    "id": 29,
+    "name": "Chocolate Cake",
+    "price": 3.5,
+    "image": "example.com/chocolatecake.jpg",
+    "active": true,
+    "category": "bakery"
+  },
+  {
+    "id": 30,
+    "name": "Donut",
+    "price": 1.9,
+    "image": "example.com/donut.jpg",
+    "active": false,
+    "category": "bakery"
+  }
+]
